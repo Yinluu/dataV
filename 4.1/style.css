@@ -1,0 +1,68 @@
+/* 设置整体页面风格 */
+body {
+    background-image: url('../img/color.jpg');
+    background-size: cover; /* 背景图像覆盖整个页面 */
+    background-position: center; /* 背景图像居中显示 */
+}, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 改进字体样式 */
+    background: #f0f2f5; /* 设置页面背景颜色 */
+    color: #333; /* 设置默认文字颜色 */
+}
+
+
+/* 导航栏样式 */
+.navbar {
+    background: linear-gradient(135deg, #43978F 0%, #9ec48e 100%); /* 使用渐变色背景 */
+    color: #ffffff; /* 文字颜色改为白色以提高对比度 */
+    padding: 15px 20px; /* 调整内边距以适应更大的字体 */
+    text-align: center;
+    font-size: 24px; /* 增加字体大小 */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 优化字体样式 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* 增强阴影效果以提升立体感 */
+    position: sticky; /* 让导航栏在滚动时保持在页面顶部 */
+    top: 0; /* 粘性定位于页面顶部 */
+    z-index: 1000; /* 确保导航栏始终在最上层 */
+}
+
+/* 导航项悬停效果 */
+.navbar a:hover {
+    color: #aad1ff; /* 悬停时改变链接颜色 */
+    text-decoration: none; /* 去除悬停时的下划线 */
+}
+
+/* 响应式设计：当屏幕宽度小于768px时，调整字体大小和内边距 */
+@media (max-width: 768px) {
+    .navbar {
+        font-size: 20px;
+        padding: 12px 15px;
+    }
+}
+
+/* 主容器样式，用于包含所有图表 */
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+/* 图表容器样式 */
+.chart-box {
+    width: 48%;
+    height: 400px;
+    margin-bottom: 20px;
+    background: #ffffff; /* 设置图表背景为白色 */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 添加阴影效果 */
+    border-radius: 8px; /* 边角圆滑 */
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .chart-box {
+        width: 100%;
+    }
+}
