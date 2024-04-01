@@ -1,0 +1,114 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=heatmap-cartesian&code=PTAEAcCcFMBdYJbUgWgQcwHYHsYCgBjbTAZ1lABMBDWaUAXlAG09Q3QByAZmACYBWDgBpufAGzDRvAOySevABxy-ATmVcADOoCMHPAF0A3HhAQY8JKgw58RUuXAAbGgDNcAWxINmrdh0ArKoCXKkGSgF5mgOaGgIgWgIr-koCqhoB_0XpGJmBQcIjIaFi40ITEZJQ0VN5MTBpCFfxc-kLlQtpC1bX1vE0ALC0VXE0KXULtTdr9_APDdRViAxq1vmxMjRXS0i2NjdJiq0Jt0uMLQj1iKluD7X11jaO8W1MrQnPMbUt7bY1i50xtbfzHdW09_A-bVO1z-TW2LyEUy4130DwAdO4qOAABQuACumAIiGIoBRCFo7gAlKAAN4PczoyCYZgE6DuBa1UB0hkzITMwmffSgAA-PM4KA4KQAvkTjNhwDiaYxyWxYNhsI5EOAAFxkh7gbAkAkIYhqjjy8B6NjC-5sdCQBAUNWy9gAC2gGDtsH1_A0AFJhA9DfrtB7jaBTb4AB4AQWDCBINu9AE9wNB9QQaNB0LgY172EVYFQ1dRaGb2CQnATQzAc-rM2wSHbsAB3NWwSDovKZ4W-INsGPhyPRzOwOMJzhJ2ipyDpgtsPPlpyuDwkCegIuOEtl3uV6t1htNlvsNsmgsAN0j6KojgAssi12x3AhMGqKg8kcG1X6H5mk44COjnAAjRyDxtmwXXAkEwF1OBrS0AC9iGzRwM3Yf8XHAjgCGgMDkAQtgf2weBsHcX1-E9dsCxIZAkCjHxM1tTNMCodxBw4QBbh0AMr0sPYft431B0aCRI0F0nYpc2KATQF_aBHCvdca3rUBAJ3VtRPpcA7SobVKJoysWQAZX7f8pMrRdVIoOsACFHCpF830MwtjLrABhRVcH1SB0B_KgUQqUAvJ8-F-CJANDL3StgpNXw4WFQwgA
+	⚠ 请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.5.0/files/dist/echarts.min.js"></script>
+  
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.5.0/files/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts-gl/2/files/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts-stat/latest/files/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/4.9.0/files/map/js/china.js"></script>
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/4.9.0/files/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.5.0/files/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+        // prettier-ignore
+const date = [
+    '3/25','3/26','3/27','3/28','3/29','3/30','3/31'
+];
+// prettier-ignore
+const platforms = [
+    '哔哩哔哩','智慧树网','慕课'
+];
+// prettier-ignore
+const data = [[0,0,53],[0,1,53],[0,2,54],[0,3,58],[0,4,51],[0,5,41],[0,6,40],
+    [1,0,77],[1,1,76],[1,2,71],[1,3,69],[1,4,48],[1,5,2],[1,6,7],
+    [2,0,71],[2,1,68],[2,2,59],[2,3,58],[2,4,42],[2,5,21],[2,6,32]]
+    .map(function (item) {
+    return [item[1], item[0], item[2] || '-'];
+});
+option = {
+  tooltip: {
+    position: 'top'
+  },
+  grid: {
+    height: '50%',
+    top: '10%'
+  },
+  xAxis: {
+    type: 'category',
+    data: date,
+    splitArea: {
+      show: true
+    }
+  },
+  yAxis: {
+    type: 'category',
+    data: platforms,
+    splitArea: {
+      show: true
+    }
+  },
+  visualMap: {
+    min: 0,
+    max: 100,
+    calculable: true,
+    orient: 'horizontal',
+    left: 'center',
+    bottom: '15%'
+  },
+  series: [
+    {
+      name: '热度',
+      type: 'heatmap',
+      data: data,
+      label: {
+        show: true
+      },
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
